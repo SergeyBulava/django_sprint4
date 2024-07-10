@@ -1,0 +1,2 @@
+TEXT_RESTRICTION: int = 30
+NUMBER_OF_POSTS: int = 5

@@ -1,7 +1,6 @@
+from blog.constants import TEXT_RESTRICTION
 from django.contrib.auth import get_user_model
 from django.db import models
-
-from blog.constants import TEXT_RESTRICTION
 
 User = get_user_model()
 
@@ -91,7 +90,7 @@ class Post(CreatedPublishedModel):
         verbose_name = 'публикация'
         verbose_name_plural = 'Публикации'
         default_related_name = 'posts'
-        ordering = ["-pub_date"]
+        ordering = ("-pub_date",)
 
     def __str__(self):
         return self.title[:TEXT_RESTRICTION]
@@ -105,7 +104,13 @@ class Comment(models.Model):
         related_name='comments',
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,
+                               related_name='comments',)
 
     class Meta:
+        verbose_name = 'комментарий'
+        verbose_name_plural = 'Комментарии'
         ordering = ('created_at',)
+
+    def __str__(self):
+        return self.post[:TEXT_RESTRICTION], self.author[:TEXT_RESTRICTION]

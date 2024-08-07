@@ -1,5 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Count
 from django.http import Http404
 from django.shortcuts import get_object_or_404
+from django.urls import reverse
 from django.utils import timezone
 from django.views.generic import (
     ListView,
@@ -7,15 +10,12 @@ from django.views.generic import (
     CreateView,
     UpdateView,
     DeleteView)
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse
-from django.db.models import Count
 
+from blog.constants import PAGINATION
+from blog.forms import PostForm, CommentForm
 from blog.mixins import DispatchMixin
 from blog.models import Category, Post, Comment
-from blog.constants import PAGINATION
 from blog.models import User
-from blog.forms import PostForm, CommentForm
 
 
 class IndexListView(ListView):

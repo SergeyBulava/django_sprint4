@@ -1,5 +1,6 @@
 from django.shortcuts import redirect
 
+
 class DispatchMixin:
 
     def dispatch(self, request, *args, **kwargs):

@@ -150,7 +150,7 @@ class CategoryListView(ListView):
     def get_queryset(self):
         category = get_object_or_404(Category,
                                      slug=self.kwargs['category_slug'],
-                                     is_published = True)
+                                     is_published=True)
         return (Post.objects.annotate(comment_count=Count('comments')).filter(
             category=category,
             is_published=True,

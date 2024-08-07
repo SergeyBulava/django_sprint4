@@ -59,6 +59,6 @@ class CommentAdmin(admin.ModelAdmin):
         'created_at',
         'author'
     )
-    search_fields = ('post',)
+    search_fields = ('post__id',)
     list_filter = ('post',)
     list_display_links = ('post',)

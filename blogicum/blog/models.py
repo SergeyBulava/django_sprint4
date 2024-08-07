@@ -113,4 +113,4 @@ class Comment(models.Model):
         ordering = ('created_at',)
 
     def __str__(self):
-        return self.post[:TEXT_RESTRICTION], self.author[:TEXT_RESTRICTION]
+        return f'{self.post, self.author.username[:TEXT_RESTRICTION]}'
